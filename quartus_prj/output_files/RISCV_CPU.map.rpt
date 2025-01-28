@@ -1,0 +1,1460 @@
+Analysis & Synthesis report for RISCV_CPU
+Tue Jul 30 15:50:48 2024
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |RISC_V_SOC_TOP|uart:uart|uart_rx_state
+ 10. State Machine - |RISC_V_SOC_TOP|uart:uart|uart_tx_state
+ 11. State Machine - |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|clint:clint|csr_state
+ 12. User-Specified and Inferred Latches
+ 13. Registers Removed During Synthesis
+ 14. Removed Registers Triggering Further Register Optimizations
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Parameter Settings for User Entity Instance: RISCV_CPU:RISCV_CPU|clint:clint
+ 19. Parameter Settings for User Entity Instance: RISCV_CPU:RISCV_CPU|data_memory:data_memory
+ 20. Parameter Settings for User Entity Instance: bus:bus
+ 21. Parameter Settings for User Entity Instance: uart:uart
+ 22. Parameter Settings for User Entity Instance: gpio:gpio
+ 23. Parameter Settings for User Entity Instance: timer:timer
+ 24. Parameter Settings for Inferred Entity Instance: RISCV_CPU:RISCV_CPU|MALU:MALU|lpm_mult:Mult0
+ 25. lpm_mult Parameter Settings by Entity Instance
+ 26. Port Connectivity Checks: "timer:timer"
+ 27. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB"
+ 28. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|data_memory:data_memory"
+ 29. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|EX_MEM:EX_MEM"
+ 30. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|clint:clint"
+ 31. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|csr:csr"
+ 32. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|DALU:DALU"
+ 33. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|ALU:ALU"
+ 34. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|ID_EX:ID_EX"
+ 35. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|Register:Register_file"
+ 36. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|mux3:pcIm_MUX"
+ 37. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|adder:add_PC"
+ 38. Port Connectivity Checks: "RISCV_CPU:RISCV_CPU"
+ 39. Elapsed Time Per Partition
+ 40. Analysis & Synthesis Messages
+ 41. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                          ;
++------------------------------------+--------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Jul 30 15:50:48 2024            ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
+; Revision Name                      ; RISCV_CPU                                        ;
+; Top-level Entity Name              ; RISC_V_SOC_TOP                                   ;
+; Family                             ; Cyclone IV E                                     ;
+; Total logic elements               ; 11,409                                           ;
+;     Total combinational functions  ; 10,260                                           ;
+;     Dedicated logic registers      ; 2,773                                            ;
+; Total registers                    ; 2773                                             ;
+; Total pins                         ; 8                                                ;
+; Total virtual pins                 ; 0                                                ;
+; Total memory bits                  ; 0                                                ;
+; Embedded Multiplier 9-bit elements ; 8                                                ;
+; Total PLLs                         ; 0                                                ;
++------------------------------------+--------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE10F17C8       ;                    ;
+; Top-level entity name                                                      ; RISC_V_SOC_TOP     ; RISCV_CPU          ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ; < 0.1%      ;
+;     Processors 5-8         ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                         ;
++------------------------------------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                           ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                           ; Library ;
++------------------------------------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------+---------+
+; ../rtl/perips/timer.v                                      ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/perips/timer.v                               ;         ;
+; ../rtl/cpu/csr_control.v                                   ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/csr_control.v                            ;         ;
+; ../rtl/cpu/csr.v                                           ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/csr.v                                    ;         ;
+; ../rtl/cpu/clint.v                                         ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/clint.v                                  ;         ;
+; ../rtl/top/RISC_V_SOC_TOP.v                                ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/top/RISC_V_SOC_TOP.v                         ;         ;
+; ../rtl/bus/bus.v                                           ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/bus/bus.v                                    ;         ;
+; ../rtl/perips/uart.v                                       ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/perips/uart.v                                ;         ;
+; ../rtl/perips/gpio.v                                       ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/perips/gpio.v                                ;         ;
+; ../rtl/cpu/RISCV_CPU.v                                     ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/RISCV_CPU.v                              ;         ;
+; ../rtl/cpu/MALU.v                                          ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/MALU.v                                   ;         ;
+; ../rtl/cpu/DALU.v                                          ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/DALU.v                                   ;         ;
+; ../rtl/cpu/mux3.v                                          ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/mux3.v                                   ;         ;
+; ../rtl/cpu/pcIm_control.v                                  ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/pcIm_control.v                           ;         ;
+; ../rtl/cpu/branch_control.v                                ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/branch_control.v                         ;         ;
+; ../rtl/cpu/controlMUX.v                                    ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/controlMUX.v                             ;         ;
+; ../rtl/cpu/adder.v                                         ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/adder.v                                  ;         ;
+; ../rtl/cpu/hazard_detection.v                              ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/hazard_detection.v                       ;         ;
+; ../rtl/cpu/forwardingMUX.v                                 ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/forwardingMUX.v                          ;         ;
+; ../rtl/cpu/forwarding_unit.v                               ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/forwarding_unit.v                        ;         ;
+; ../rtl/cpu/MEM_WB.v                                        ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/MEM_WB.v                                 ;         ;
+; ../rtl/cpu/data_memory.v                                   ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/data_memory.v                            ;         ;
+; ../rtl/cpu/EX_MEM.v                                        ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/EX_MEM.v                                 ;         ;
+; ../rtl/cpu/ALU.v                                           ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/ALU.v                                    ;         ;
+; ../rtl/cpu/ALU_control.v                                   ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/ALU_control.v                            ;         ;
+; ../rtl/cpu/mux.v                                           ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/mux.v                                    ;         ;
+; ../rtl/cpu/SignExtend.v                                    ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/SignExtend.v                             ;         ;
+; ../rtl/cpu/ID_EX.v                                         ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/ID_EX.v                                  ;         ;
+; ../rtl/cpu/control.v                                       ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/control.v                                ;         ;
+; ../rtl/cpu/Rigister.v                                      ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/Rigister.v                               ;         ;
+; ../rtl/cpu/IF_ID.v                                         ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/IF_ID.v                                  ;         ;
+; ../rtl/cpu/pc.v                                            ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/pc.v                                     ;         ;
+; ../rtl/cpu/instruction_memory.v                            ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/instruction_memory.v                     ;         ;
+; ../rtl/cpu/cpu_define.v                                    ; yes             ; User Verilog HDL File        ; C:/Users/user/side project/RISV-V CPU/rtl/cpu/cpu_define.v                             ;         ;
+; /users/user/side project/risv-v cpu/program/demo/demo.inst ; yes             ; Auto-Found Unspecified File  ; /users/user/side project/risv-v cpu/program/demo/demo.inst                             ;         ;
+; lpm_mult.tdf                                               ; yes             ; Megafunction                 ; c:/users/user/fpga soft/quartusii_13.0/quartus/libraries/megafunctions/lpm_mult.tdf    ;         ;
+; aglobal130.inc                                             ; yes             ; Megafunction                 ; c:/users/user/fpga soft/quartusii_13.0/quartus/libraries/megafunctions/aglobal130.inc  ;         ;
+; lpm_add_sub.inc                                            ; yes             ; Megafunction                 ; c:/users/user/fpga soft/quartusii_13.0/quartus/libraries/megafunctions/lpm_add_sub.inc ;         ;
+; multcore.inc                                               ; yes             ; Megafunction                 ; c:/users/user/fpga soft/quartusii_13.0/quartus/libraries/megafunctions/multcore.inc    ;         ;
+; bypassff.inc                                               ; yes             ; Megafunction                 ; c:/users/user/fpga soft/quartusii_13.0/quartus/libraries/megafunctions/bypassff.inc    ;         ;
+; altshift.inc                                               ; yes             ; Megafunction                 ; c:/users/user/fpga soft/quartusii_13.0/quartus/libraries/megafunctions/altshift.inc    ;         ;
+; db/mult_7dt.tdf                                            ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/side project/RISV-V CPU/quartus_prj/db/mult_7dt.tdf                      ;         ;
++------------------------------------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                 ;
++---------------------------------------------+---------------+
+; Resource                                    ; Usage         ;
++---------------------------------------------+---------------+
+; Estimated Total logic elements              ; 11,409        ;
+;                                             ;               ;
+; Total combinational functions               ; 10260         ;
+; Logic element usage by number of LUT inputs ;               ;
+;     -- 4 input functions                    ; 7867          ;
+;     -- 3 input functions                    ; 1857          ;
+;     -- <=2 input functions                  ; 536           ;
+;                                             ;               ;
+; Logic elements by mode                      ;               ;
+;     -- normal mode                          ; 9496          ;
+;     -- arithmetic mode                      ; 764           ;
+;                                             ;               ;
+; Total registers                             ; 2773          ;
+;     -- Dedicated logic registers            ; 2773          ;
+;     -- I/O registers                        ; 0             ;
+;                                             ;               ;
+; I/O pins                                    ; 8             ;
+; Embedded Multiplier 9-bit elements          ; 8             ;
+; Maximum fan-out node                        ; sys_clk~input ;
+; Maximum fan-out                             ; 2773          ;
+; Total fan-out                               ; 49178         ;
+; Average fan-out                             ; 3.77          ;
++---------------------------------------------+---------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                             ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                  ; Library Name ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------+--------------+
+; |RISC_V_SOC_TOP                               ; 10260 (1)         ; 2773 (0)     ; 0           ; 8            ; 0       ; 4         ; 8    ; 0            ; |RISC_V_SOC_TOP                                                                      ; work         ;
+;    |RISCV_CPU:RISCV_CPU|                      ; 10198 (24)        ; 2713 (4)     ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU                                                  ; work         ;
+;       |ALU:ALU|                               ; 435 (435)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ALU:ALU                                          ; work         ;
+;       |ALU_control:ALU_control|               ; 49 (49)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ALU_control:ALU_control                          ; work         ;
+;       |DALU:DALU|                             ; 310 (310)         ; 141 (141)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|DALU:DALU                                        ; work         ;
+;       |EX_MEM:EX_MEM|                         ; 0 (0)             ; 108 (108)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|EX_MEM:EX_MEM                                    ; work         ;
+;       |ID_EX:ID_EX|                           ; 1479 (1479)       ; 205 (205)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX                                      ; work         ;
+;       |IF_ID:IF_ID|                           ; 68 (68)           ; 65 (65)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|IF_ID:IF_ID                                      ; work         ;
+;       |MALU:MALU|                             ; 526 (447)         ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MALU:MALU                                        ; work         ;
+;          |lpm_mult:Mult0|                     ; 79 (0)            ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MALU:MALU|lpm_mult:Mult0                         ; work         ;
+;             |mult_7dt:auto_generated|         ; 79 (79)           ; 0 (0)        ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MALU:MALU|lpm_mult:Mult0|mult_7dt:auto_generated ; work         ;
+;       |MEM_WB:MEM_WB|                         ; 51 (51)           ; 104 (104)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB                                    ; work         ;
+;       |Register:Register_file|                ; 40 (40)           ; 1024 (1024)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|Register:Register_file                           ; work         ;
+;       |SignExtend:SignExtend|                 ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|SignExtend:SignExtend                            ; work         ;
+;       |adder:add_PC|                          ; 33 (33)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|adder:add_PC                                     ; work         ;
+;       |branch_control:branch_control|         ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|branch_control:branch_control                    ; work         ;
+;       |clint:clint|                           ; 20 (20)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|clint:clint                                      ; work         ;
+;       |control:Control|                       ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|control:Control                                  ; work         ;
+;       |data_memory:data_memory|               ; 5769 (5769)       ; 1024 (1024)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory                          ; work         ;
+;       |forwardingMUX:ForwardToData1|          ; 67 (67)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1                     ; work         ;
+;       |forwardingMUX:ForwardToData2|          ; 75 (75)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2                     ; work         ;
+;       |forwarding_unit:ForwardingUnit|        ; 17 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|forwarding_unit:ForwardingUnit                   ; work         ;
+;       |instruction_memory:instruction_memory| ; 669 (669)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|instruction_memory:instruction_memory            ; work         ;
+;       |mux3:pcIm_MUX|                         ; 15 (15)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux3:pcIm_MUX                                    ; work         ;
+;       |mux:ALU_mux|                           ; 336 (336)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALU_mux                                      ; work         ;
+;       |mux:ALUsrc_MUX|                        ; 46 (46)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALUsrc_MUX                                   ; work         ;
+;       |mux:MemToReg2_MUX|                     ; 64 (64)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:MemToReg2_MUX                                ; work         ;
+;       |pc:pc|                                 ; 61 (61)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|pc:pc                                            ; work         ;
+;       |pcIm_control:pcIm_control|             ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control                        ; work         ;
+;    |gpio:gpio|                                ; 3 (3)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|gpio:gpio                                                            ; work         ;
+;    |uart:uart|                                ; 58 (58)           ; 56 (56)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |RISC_V_SOC_TOP|uart:uart                                                            ; work         ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 4           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 8           ;
+; Signed Embedded Multipliers           ; 0           ;
+; Unsigned Embedded Multipliers         ; 4           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------+
+; State Machine - |RISC_V_SOC_TOP|uart:uart|uart_rx_state                                                      ;
++-----------------------+--------------------+-------------------+-----------------------+---------------------+
+; Name                  ; uart_rx_state.IDLE ; uart_rx_state.END ; uart_rx_state.RX_BYTE ; uart_rx_state.BEGIN ;
++-----------------------+--------------------+-------------------+-----------------------+---------------------+
+; uart_rx_state.IDLE    ; 0                  ; 0                 ; 0                     ; 0                   ;
+; uart_rx_state.BEGIN   ; 1                  ; 0                 ; 0                     ; 1                   ;
+; uart_rx_state.RX_BYTE ; 1                  ; 0                 ; 1                     ; 0                   ;
+; uart_rx_state.END     ; 1                  ; 1                 ; 0                     ; 0                   ;
++-----------------------+--------------------+-------------------+-----------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------+
+; State Machine - |RISC_V_SOC_TOP|uart:uart|uart_tx_state                                                      ;
++-----------------------+---------------------+--------------------+-------------------+-----------------------+
+; Name                  ; uart_tx_state.BEGIN ; uart_tx_state.IDLE ; uart_tx_state.END ; uart_tx_state.TX_BYTE ;
++-----------------------+---------------------+--------------------+-------------------+-----------------------+
+; uart_tx_state.IDLE    ; 0                   ; 0                  ; 0                 ; 0                     ;
+; uart_tx_state.BEGIN   ; 1                   ; 1                  ; 0                 ; 0                     ;
+; uart_tx_state.TX_BYTE ; 0                   ; 1                  ; 0                 ; 1                     ;
+; uart_tx_state.END     ; 0                   ; 1                  ; 1                 ; 0                     ;
++-----------------------+---------------------+--------------------+-------------------+-----------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|clint:clint|csr_state                                                                        ;
++----------------------------+----------------------+----------------------------+--------------------+-----------------------+--------------------+
+; Name                       ; csr_state.CSR_MCAUSE ; csr_state.CSR_MSTATUS_MRET ; csr_state.CSR_MEPC ; csr_state.CSR_MSTATUS ; csr_state.CSR_IDLE ;
++----------------------------+----------------------+----------------------------+--------------------+-----------------------+--------------------+
+; csr_state.CSR_IDLE         ; 0                    ; 0                          ; 0                  ; 0                     ; 0                  ;
+; csr_state.CSR_MSTATUS      ; 0                    ; 0                          ; 0                  ; 1                     ; 1                  ;
+; csr_state.CSR_MEPC         ; 0                    ; 0                          ; 1                  ; 0                     ; 1                  ;
+; csr_state.CSR_MSTATUS_MRET ; 0                    ; 1                          ; 0                  ; 0                     ; 1                  ;
+; csr_state.CSR_MCAUSE       ; 1                    ; 0                          ; 0                  ; 0                     ; 1                  ;
++----------------------------+----------------------+----------------------------+--------------------+-----------------------+--------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                                        ;
++-----------------------------------------------------------+-------------------------------------------------------+------------------------+
+; Latch Name                                                ; Latch Enable Signal                                   ; Free of Timing Hazards ;
++-----------------------------------------------------------+-------------------------------------------------------+------------------------+
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[31]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[1] ; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|Mux2      ; yes                    ;
+; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2] ; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|Mux2      ; yes                    ;
+; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[0] ; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|Mux2      ; yes                    ;
+; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[3] ; RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|Mux0      ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[30]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[29]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[28]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[3]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[2]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[1]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[0]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[16]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[15]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[8]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[13]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[11]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[14]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[10]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[12]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[9]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[17]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[18]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[19]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[20]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[22]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[23]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[21]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[5]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[6]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[7]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[4]                   ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[24]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[25]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[26]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|data_o[27]                  ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[0]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[1]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[2]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[3]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[4]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[5]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[6]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[7]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[8]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[9]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[10]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[11]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[12]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[13]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[14]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[15]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[16]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[17]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[0]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[1]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[2]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[3]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[4]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[5]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[6]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[7]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[8]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[9]           ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[10]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[11]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[12]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[13]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[14]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[15]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[16]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[17]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control|pc_type[0]  ; RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control|WideOr0 ; yes                    ;
+; RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control|pc_type[1]  ; RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control|WideOr0 ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[18]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[19]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[20]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[21]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[22]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[23]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[24]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[25]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[26]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[27]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[28]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[29]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[30]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data0[31]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[18]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[19]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[20]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[21]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[22]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[23]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[24]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[25]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[26]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[27]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[28]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; RISCV_CPU:RISCV_CPU|MALU:MALU|unsigned_data1[29]          ; RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]             ; yes                    ;
+; Number of user-specified and inferred latches = 102       ;                                                       ;                        ;
++-----------------------------------------------------------+-------------------------------------------------------+------------------------+
+Table restricted to first 100 entries. Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                  ;
++--------------------------------------------------------------------------+----------------------------------------------------------+
+; Register name                                                            ; Reason for Removal                                       ;
++--------------------------------------------------------------------------+----------------------------------------------------------+
+; timer:timer|timer_ctrl[1]                                                ; Stuck at GND due to stuck port clock_enable              ;
+; timer:timer|timer_evalue[0..31]                                          ; Stuck at GND due to stuck port clock_enable              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_addr_o[2..5,7,10,11]                  ; Stuck at GND due to stuck port data_in                   ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[3]                               ; Stuck at GND due to stuck port data_in                   ;
+; timer:timer|timer_ctrl[0,2]                                              ; Lost fanout                                              ;
+; timer:timer|timer_count[0..31]                                           ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_addr_o[8,9]                           ; Merged with RISCV_CPU:RISCV_CPU|clint:clint|wr_en_o      ;
+; RISCV_CPU:RISCV_CPU|EX_MEM:EX_MEM|MemToReg_o                             ; Merged with RISCV_CPU:RISCV_CPU|EX_MEM:EX_MEM|MemRead_o  ;
+; RISCV_CPU:RISCV_CPU|clint:clint|cause[6,9,15,18,21,24,27,30]             ; Merged with RISCV_CPU:RISCV_CPU|clint:clint|cause[12]    ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[24]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RT_addr_o[4] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[23]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RT_addr_o[3] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[22]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RT_addr_o[2] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[21]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RT_addr_o[1] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[20]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RT_addr_o[0] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[19]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RS_addr_o[4] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[18]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RS_addr_o[3] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[17]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RS_addr_o[2] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[16]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RS_addr_o[1] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|instr_o[15]                              ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RS_addr_o[0] ;
+; RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|MemToReg_o                               ; Merged with RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|MemRead_o    ;
+; RISCV_CPU:RISCV_CPU|clint:clint|cause[12]                                ; Stuck at GND due to stuck port data_in                   ;
+; RISCV_CPU:RISCV_CPU|clint:clint|div_ins_addr[3,6,9,12,15,18,21,24,27,30] ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|cause[3]                                 ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|ins_addr[3,6,9,12,15,18,21,24,27,30]     ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_en_o                                  ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_addr_o[0,1,6]                         ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[3,6,9,12,15,18,21,24,27,30]    ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_privilege_en_o                        ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_privilege_ctrl_o[1]                   ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|cycle[0..63]                                 ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|privilege_mode[1]                            ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|mtvec[3,6,9,12,15,18,21,24,27,30]            ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|mcause[3,6,9,12,15,18,21,24,27,30]           ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|mepc[3,6,9,12,15,18,21,24,27,30]             ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|mie[3,6,9,12,15,18,21,24,27,30]              ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|mstatus[3,6,9,12,15,18,21,24,27,30]          ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|csr:csr|mscratch[3,6,9,12,15,18,21,24,27,30]         ; Lost fanout                                              ;
+; uart:uart|uart_tx_state~6                                                ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|csr_state~9                              ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|csr_state~10                             ; Lost fanout                                              ;
+; RISCV_CPU:RISCV_CPU|clint:clint|csr_state~11                             ; Lost fanout                                              ;
+; uart:uart|uart_rx_delay                                                  ; Lost fanout                                              ;
+; uart:uart|delay_buf[3]                                                   ; Lost fanout                                              ;
+; uart:uart|rx_baud_cnt[0..12]                                             ; Lost fanout                                              ;
+; uart:uart|rx_bit_cnt[0..3]                                               ; Lost fanout                                              ;
+; uart:uart|delay_buf[0..2]                                                ; Lost fanout                                              ;
+; uart:uart|uart_rx_state.BEGIN                                            ; Lost fanout                                              ;
+; uart:uart|uart_rx_state.RX_BYTE                                          ; Lost fanout                                              ;
+; uart:uart|uart_rx_state.END                                              ; Lost fanout                                              ;
+; uart:uart|uart_rx_state.IDLE                                             ; Lost fanout                                              ;
+; Total Number of Removed Registers = 290                                  ;                                                          ;
++--------------------------------------------------------------------------+----------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                        ;
++-----------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
+; Register name                                 ; Reason for Removal             ; Registers Removed due to This Register                                            ;
++-----------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
+; timer:timer|timer_ctrl[1]                     ; Stuck at GND                   ; timer:timer|timer_ctrl[2], RISCV_CPU:RISCV_CPU|clint:clint|cause[12],             ;
+;                                               ; due to stuck port clock_enable ; RISCV_CPU:RISCV_CPU|clint:clint|ins_addr[30],                                     ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|privilege_mode[1],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|mstatus[30], RISCV_CPU:RISCV_CPU|csr:csr|mstatus[27], ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|mstatus[24], RISCV_CPU:RISCV_CPU|csr:csr|mstatus[21], ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|mstatus[18], RISCV_CPU:RISCV_CPU|csr:csr|mstatus[15], ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|mstatus[12], RISCV_CPU:RISCV_CPU|csr:csr|mstatus[9],  ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|mstatus[6], RISCV_CPU:RISCV_CPU|csr:csr|mstatus[3]    ;
+; uart:uart|rx_baud_cnt[12]                     ; Lost Fanouts                   ; uart:uart|rx_baud_cnt[11], uart:uart|rx_baud_cnt[10], uart:uart|rx_baud_cnt[9],   ;
+;                                               ;                                ; uart:uart|rx_baud_cnt[8], uart:uart|rx_baud_cnt[7], uart:uart|rx_baud_cnt[6],     ;
+;                                               ;                                ; uart:uart|rx_baud_cnt[5], uart:uart|rx_baud_cnt[4], uart:uart|rx_baud_cnt[3],     ;
+;                                               ;                                ; uart:uart|rx_baud_cnt[2], uart:uart|rx_baud_cnt[1], uart:uart|rx_baud_cnt[0],     ;
+;                                               ;                                ; uart:uart|uart_rx_state.IDLE                                                      ;
+; RISCV_CPU:RISCV_CPU|clint:clint|wr_addr_o[11] ; Stuck at GND                   ; RISCV_CPU:RISCV_CPU|clint:clint|wr_en_o,                                          ;
+;                                               ; due to stuck port data_in      ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[30],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[27],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[24],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[21],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[18],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[15],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[12],                                    ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[9],                                     ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[6],                                     ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|clint:clint|wr_data_o[3]                                      ;
+; RISCV_CPU:RISCV_CPU|csr:csr|cycle[63]         ; Lost Fanouts                   ; RISCV_CPU:RISCV_CPU|csr:csr|cycle[5], RISCV_CPU:RISCV_CPU|csr:csr|cycle[4],       ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|cycle[3], RISCV_CPU:RISCV_CPU|csr:csr|cycle[2],       ;
+;                                               ;                                ; RISCV_CPU:RISCV_CPU|csr:csr|cycle[1], RISCV_CPU:RISCV_CPU|csr:csr|cycle[0]        ;
+; uart:uart|uart_rx_delay                       ; Lost Fanouts                   ; uart:uart|delay_buf[3], uart:uart|delay_buf[2], uart:uart|delay_buf[1],           ;
+;                                               ;                                ; uart:uart|delay_buf[0]                                                            ;
+; uart:uart|rx_bit_cnt[3]                       ; Lost Fanouts                   ; uart:uart|rx_bit_cnt[2], uart:uart|rx_bit_cnt[1], uart:uart|rx_bit_cnt[0],        ;
+;                                               ;                                ; uart:uart|uart_rx_state.RX_BYTE                                                   ;
++-----------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 2773  ;
+; Number of registers using Synchronous Clear  ; 215   ;
+; Number of registers using Synchronous Load   ; 95    ;
+; Number of registers using Asynchronous Clear ; 2706  ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 2288  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; uart:uart|uart_tx                      ; 2       ;
+; RISCV_CPU:RISCV_CPU|div_flag           ; 2       ;
+; Total number of inverted registers = 2 ;         ;
++----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |RISC_V_SOC_TOP|uart:uart|tx_bit_cnt[1]                                         ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]                      ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |RISC_V_SOC_TOP|uart:uart|rx_bit_cnt[3]                                         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|DALU:DALU|div_busy                          ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|DALU:DALU|bit_position[5]                   ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[14]                     ;
+; 5:1                ; 31 bits   ; 93 LEs        ; 62 LEs               ; 31 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|DALU:DALU|reminder[19]                      ;
+; 5:1                ; 12 bits   ; 36 LEs        ; 24 LEs               ; 12 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|SignExtended_o[28]              ;
+; 10:1               ; 31 bits   ; 186 LEs       ; 93 LEs               ; 93 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|DALU:DALU|result_o[30]                      ;
+; 7:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|SignExtended_o[7]               ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RD_data0_o[24]                  ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|RD_data1_o[17]                  ;
+; 7:1                ; 30 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|DALU:DALU|reminder[44]                      ;
+; 7:1                ; 5 bits    ; 20 LEs        ; 15 LEs               ; 5 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|SignExtended_o[12]              ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|SignExtended_o[0]               ;
+; 66:1               ; 7 bits    ; 308 LEs       ; 301 LEs              ; 7 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB|DataMemReadData_o[6]          ;
+; 68:1               ; 8 bits    ; 360 LEs       ; 352 LEs              ; 8 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB|DataMemReadData_o[18]         ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[127][0] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[126][0] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[125][7] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[124][7] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[123][4] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[122][4] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[121][0] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[120][5] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[119][6] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[118][5] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[117][5] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[116][5] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[115][3] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[114][3] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[113][3] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[112][3] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[111][3] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[110][3] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[109][3] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[108][5] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[107][2] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[106][6] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[105][2] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[104][2] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[103][0] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[102][2] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[101][6] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[100][6] ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[99][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[98][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[97][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[96][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[95][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[94][5]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[93][4]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[92][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[91][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[90][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[89][5]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[88][5]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[87][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[86][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[85][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[84][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[83][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[82][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[81][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[80][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[79][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[78][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[77][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[76][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[75][4]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[74][4]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[73][4]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[72][4]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[71][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[70][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[69][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[68][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[67][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[66][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[65][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[64][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[63][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[62][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[61][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[60][5]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[59][4]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[58][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[57][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[56][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[55][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[54][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[53][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[52][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[51][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[50][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[49][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[48][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[47][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[46][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[45][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[44][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[43][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[42][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[41][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[40][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[39][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[38][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[37][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[36][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[35][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[34][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[33][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[32][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[31][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[30][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[29][4]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[28][7]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[27][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[26][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[25][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[24][6]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[23][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[22][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[21][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[20][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[19][5]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[18][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[17][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[16][1]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[15][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[14][5]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[13][3]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[12][0]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[11][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[10][2]  ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[9][2]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[8][6]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[7][3]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[6][4]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[5][5]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[4][3]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[3][4]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[2][3]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[1][3]   ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|data_memory:data_memory|data_memory[0][3]   ;
+; 132:1              ; 8 bits    ; 704 LEs       ; 696 LEs              ; 8 LEs                  ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB|DataMemReadData_o[27]         ;
+; 132:1              ; 7 bits    ; 616 LEs       ; 602 LEs              ; 14 LEs                 ; Yes        ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB|DataMemReadData_o[8]          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|clint:clint|csr_state                       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|Mux25          ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:MemToReg2_MUX|data_o[23]                ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|Mux28          ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:pc_MUX|data_o[22]                       ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux3:pcIm_MUX|Mux20                         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|uart:uart|uart_rx_state                                         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|clint:clint|csr_state                       ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|Mux0                ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MALU:MALU|Mux58                             ;
+; 17:1               ; 3 bits    ; 33 LEs        ; 30 LEs               ; 3 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|Mux11               ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MALU:MALU|Mux43                             ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|MALU:MALU|Mux95                             ;
+; 22:1               ; 7 bits    ; 98 LEs        ; 70 LEs               ; 28 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[8]                       ;
+; 23:1               ; 7 bits    ; 105 LEs       ; 70 LEs               ; 35 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[17]                      ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 44 LEs               ; 16 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[5]                       ;
+; 24:1               ; 4 bits    ; 64 LEs        ; 44 LEs               ; 20 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[24]                      ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[3]                       ;
+; 25:1               ; 2 bits    ; 32 LEs        ; 22 LEs               ; 10 LEs                 ; No         ; |RISC_V_SOC_TOP|RISCV_CPU:RISCV_CPU|mux:ALU_mux|data_o[28]                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: RISCV_CPU:RISCV_CPU|clint:clint ;
++------------------+-------+---------------------------------------------------+
+; Parameter Name   ; Value ; Type                                              ;
++------------------+-------+---------------------------------------------------+
+; INT_IDLE         ; 001   ; Unsigned Binary                                   ;
+; INT_SYNC_ASSERT  ; 010   ; Unsigned Binary                                   ;
+; INT_ASYNC_ASSERT ; 011   ; Unsigned Binary                                   ;
+; INT_MRET         ; 100   ; Unsigned Binary                                   ;
+; CSR_IDLE         ; 001   ; Unsigned Binary                                   ;
+; CSR_MSTATUS      ; 010   ; Unsigned Binary                                   ;
+; CSR_MEPC         ; 011   ; Unsigned Binary                                   ;
+; CSR_MSTATUS_MRET ; 100   ; Unsigned Binary                                   ;
+; CSR_MCAUSE       ; 101   ; Unsigned Binary                                   ;
++------------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: RISCV_CPU:RISCV_CPU|data_memory:data_memory ;
++----------------+-------------+-----------------------------------------------------------+
+; Parameter Name ; Value       ; Type                                                      ;
++----------------+-------------+-----------------------------------------------------------+
+; mem_offset     ; 10000000000 ; Unsigned Binary                                           ;
++----------------+-------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------+
+; Parameter Settings for User Entity Instance: bus:bus ;
++----------------+-------+-----------------------------+
+; Parameter Name ; Value ; Type                        ;
++----------------+-------+-----------------------------+
+; slave_0        ; 0010  ; Unsigned Binary             ;
+; slave_1        ; 0001  ; Unsigned Binary             ;
++----------------+-------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:uart                ;
++------------------+----------------------------------+-----------------+
+; Parameter Name   ; Value                            ; Type            ;
++------------------+----------------------------------+-----------------+
+; UART_CTRL        ; 0000                             ; Unsigned Binary ;
+; UART_TX_DATA_BUF ; 0100                             ; Unsigned Binary ;
+; UART_RX_DATA_BUF ; 1000                             ; Unsigned Binary ;
+; DELAY_CLK        ; 100                              ; Unsigned Binary ;
+; BAUD_CNT_MAX     ; 00000000000000000001010001011000 ; Unsigned Binary ;
+; IDLE             ; 0000                             ; Unsigned Binary ;
+; BEGIN            ; 0001                             ; Unsigned Binary ;
+; RX_BYTE          ; 0010                             ; Unsigned Binary ;
+; TX_BYTE          ; 0011                             ; Unsigned Binary ;
+; END              ; 0100                             ; Unsigned Binary ;
++------------------+----------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------+
+; Parameter Settings for User Entity Instance: gpio:gpio ;
++----------------+-------+-------------------------------+
+; Parameter Name ; Value ; Type                          ;
++----------------+-------+-------------------------------+
+; GPIO_CTRL      ; 0000  ; Unsigned Binary               ;
+; GPIO_DATA      ; 0100  ; Unsigned Binary               ;
++----------------+-------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: timer:timer ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; TIMER_CTRL     ; 0000  ; Unsigned Binary                 ;
+; TIMER_COUNT    ; 0100  ; Unsigned Binary                 ;
+; TIMER_EVALUE   ; 1000  ; Unsigned Binary                 ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: RISCV_CPU:RISCV_CPU|MALU:MALU|lpm_mult:Mult0 ;
++------------------------------------------------+--------------+-------------------------------+
+; Parameter Name                                 ; Value        ; Type                          ;
++------------------------------------------------+--------------+-------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY                    ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY                  ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE                  ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE                ;
+; LPM_WIDTHA                                     ; 32           ; Untyped                       ;
+; LPM_WIDTHB                                     ; 32           ; Untyped                       ;
+; LPM_WIDTHP                                     ; 64           ; Untyped                       ;
+; LPM_WIDTHR                                     ; 64           ; Untyped                       ;
+; LPM_WIDTHS                                     ; 1            ; Untyped                       ;
+; LPM_REPRESENTATION                             ; UNSIGNED     ; Untyped                       ;
+; LPM_PIPELINE                                   ; 0            ; Untyped                       ;
+; LATENCY                                        ; 0            ; Untyped                       ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped                       ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped                       ;
+; USE_EAB                                        ; OFF          ; Untyped                       ;
+; MAXIMIZE_SPEED                                 ; 5            ; Untyped                       ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped                       ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped                       ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K           ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped                       ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped                       ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped                       ;
+; CBXI_PARAMETER                                 ; mult_7dt     ; Untyped                       ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped                       ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped                       ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped                       ;
++------------------------------------------------+--------------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                                       ;
++---------------------------------------+----------------------------------------------+
+; Name                                  ; Value                                        ;
++---------------------------------------+----------------------------------------------+
+; Number of entity instances            ; 1                                            ;
+; Entity Instance                       ; RISCV_CPU:RISCV_CPU|MALU:MALU|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 32                                           ;
+;     -- LPM_WIDTHB                     ; 32                                           ;
+;     -- LPM_WIDTHP                     ; 64                                           ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                                     ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                           ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                           ;
+;     -- USE_EAB                        ; OFF                                          ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                         ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                           ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                           ;
++---------------------------------------+----------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "timer:timer"                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; rd_data_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB"                                                       ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; RD_data_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|data_memory:data_memory"                                                                                                            ;
++-----------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                                                                                             ;
++-----------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; RD_addr_i ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (11 bits) it drives.  Extra input bit(s) "RD_addr_i[10..1]" will be connected to GND. ;
++-----------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|EX_MEM:EX_MEM"                                                                                                                      ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                                                      ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; instr_o[31..15] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; instr_o[11..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; Offset_o        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; zero_i          ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|clint:clint"                                                            ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; int_addr_o   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; int_assert_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|csr:csr"                                                                                                                            ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                                                      ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; clint_rd_addr_i ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; clint_rd_data_o ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|DALU:DALU"                                                                                                                                                      ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                                                                                                                                          ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; funct3_i ; Input ; Warning  ; Input port expression (4 bits) is wider than the input port (3 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|ALU:ALU"                                                          ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; zero_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|ID_EX:ID_EX"  ;
++-----------------+--------+----------+------------------------+
+; Port            ; Type   ; Severity ; Details                ;
++-----------------+--------+----------+------------------------+
+; PC_branch_sel_o ; Output ; Info     ; Explicitly unconnected ;
++-----------------+--------+----------+------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|Register:Register_file"                                                                                                               ;
++------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type  ; Severity ; Details                                                                                                                                              ;
++------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+; op_address ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (11 bits) it drives.  Extra input bit(s) "op_address[10..1]" will be connected to GND. ;
++------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|mux3:pcIm_MUX" ;
++------------+-------+----------+-------------------------------+
+; Port       ; Type  ; Severity ; Details                       ;
++------------+-------+----------+-------------------------------+
+; data0_i[0] ; Input ; Info     ; Stuck at GND                  ;
+; data2_i[0] ; Input ; Info     ; Stuck at GND                  ;
++------------+-------+----------+-------------------------------+
+
+
++--------------------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU|adder:add_PC" ;
++----------------+-------+----------+--------------------------+
+; Port           ; Type  ; Severity ; Details                  ;
++----------------+-------+----------+--------------------------+
+; data2_i[31..3] ; Input ; Info     ; Stuck at GND             ;
+; data2_i[1..0]  ; Input ; Info     ; Stuck at GND             ;
+; data2_i[2]     ; Input ; Info     ; Stuck at VCC             ;
++----------------+-------+----------+--------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "RISCV_CPU:RISCV_CPU"    ;
++------------------+-------+----------+--------------+
+; Port             ; Type  ; Severity ; Details      ;
++------------------+-------+----------+--------------+
+; int_flag_i[7..1] ; Input ; Info     ; Stuck at GND ;
++------------------+-------+----------+--------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:31     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+    Info: Processing started: Tue Jul 30 15:50:14 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCV_CPU -c RISCV_CPU
+Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/perips/timer.v
+    Info (12023): Found entity 1: timer
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/csr_control.v
+    Info (12023): Found entity 1: csr_control
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/csr.v
+    Info (12023): Found entity 1: csr
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/clint.v
+    Info (12023): Found entity 1: clint
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/top/risc_v_soc_top.v
+    Info (12023): Found entity 1: RISC_V_SOC_TOP
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/bus/bus.v
+    Info (12023): Found entity 1: bus
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/perips/uart.v
+    Info (12023): Found entity 1: uart
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/perips/gpio.v
+    Info (12023): Found entity 1: gpio
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/riscv_cpu.v
+    Info (12023): Found entity 1: RISCV_CPU
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/malu.v
+    Info (12023): Found entity 1: MALU
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/dalu.v
+    Info (12023): Found entity 1: DALU
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/mux3.v
+    Info (12023): Found entity 1: mux3
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/pcim_control.v
+    Info (12023): Found entity 1: pcIm_control
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/cmp_op.v
+    Info (12023): Found entity 1: cmp_op
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/branch_control.v
+    Info (12023): Found entity 1: branch_control
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/controlmux.v
+    Info (12023): Found entity 1: controlMUX
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/adder.v
+    Info (12023): Found entity 1: adder
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/hazard_detection.v
+    Info (12023): Found entity 1: hazard_detection
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/forwardingmux.v
+    Info (12023): Found entity 1: forwardingMUX
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/forwarding_unit.v
+    Info (12023): Found entity 1: forwarding_unit
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/mem_wb.v
+    Info (12023): Found entity 1: MEM_WB
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/data_memory.v
+    Info (12023): Found entity 1: data_memory
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/ex_mem.v
+    Info (12023): Found entity 1: EX_MEM
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/alu.v
+    Info (12023): Found entity 1: ALU
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/alu_control.v
+    Info (12023): Found entity 1: ALU_control
+Warning (12090): Entity "mux" obtained from "../rtl/cpu/mux.v" instead of from Quartus II megafunction library
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/mux.v
+    Info (12023): Found entity 1: mux
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/signextend.v
+    Info (12023): Found entity 1: SignExtend
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/shift.v
+    Info (12023): Found entity 1: Shift
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/id_ex.v
+    Info (12023): Found entity 1: ID_EX
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/control.v
+    Info (12023): Found entity 1: control
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/rigister.v
+    Info (12023): Found entity 1: Register
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/if_id.v
+    Info (12023): Found entity 1: IF_ID
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/pc.v
+    Info (12023): Found entity 1: pc
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/instruction_memory.v
+    Info (12023): Found entity 1: instruction_memory
+Info (12021): Found 0 design units, including 0 entities, in source file /users/user/side project/risv-v cpu/rtl/cpu/cpu_define.v
+Warning (10236): Verilog HDL Implicit Net warning at RISCV_CPU.v(180): created implicit net for "hold_flag"
+Warning (10236): Verilog HDL Implicit Net warning at RISCV_CPU.v(385): created implicit net for "address"
+Info (12127): Elaborating entity "RISC_V_SOC_TOP" for the top level hierarchy
+Info (12128): Elaborating entity "RISCV_CPU" for hierarchy "RISCV_CPU:RISCV_CPU"
+Info (12128): Elaborating entity "mux" for hierarchy "RISCV_CPU:RISCV_CPU|mux:pc_MUX"
+Info (12128): Elaborating entity "pc" for hierarchy "RISCV_CPU:RISCV_CPU|pc:pc"
+Info (12128): Elaborating entity "adder" for hierarchy "RISCV_CPU:RISCV_CPU|adder:add_PC"
+Info (12128): Elaborating entity "instruction_memory" for hierarchy "RISCV_CPU:RISCV_CPU|instruction_memory:instruction_memory"
+Warning (10850): Verilog HDL warning at instruction_memory.v(27): number of words (498) in memory file does not match the number of elements in the address range [0:255]
+Warning (10030): Net "instr_memory.data_a" at instruction_memory.v(23) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "instr_memory.waddr_a" at instruction_memory.v(23) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "instr_memory.we_a" at instruction_memory.v(23) has no driver or initial value, using a default initial value '0'
+Info (12128): Elaborating entity "pcIm_control" for hierarchy "RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control"
+Warning (10270): Verilog HDL Case Statement warning at pcIm_control.v(10): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at pcIm_control.v(10): inferring latch(es) for variable "pc_type", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "pc_type[0]" at pcIm_control.v(10)
+Info (10041): Inferred latch for "pc_type[1]" at pcIm_control.v(10)
+Info (12128): Elaborating entity "mux3" for hierarchy "RISCV_CPU:RISCV_CPU|mux3:pcIm_MUX"
+Info (12128): Elaborating entity "IF_ID" for hierarchy "RISCV_CPU:RISCV_CPU|IF_ID:IF_ID"
+Info (12128): Elaborating entity "control" for hierarchy "RISCV_CPU:RISCV_CPU|control:Control"
+Info (12128): Elaborating entity "controlMUX" for hierarchy "RISCV_CPU:RISCV_CPU|controlMUX:ControlMUX"
+Info (12128): Elaborating entity "Register" for hierarchy "RISCV_CPU:RISCV_CPU|Register:Register_file"
+Warning (10240): Verilog HDL Always Construct warning at Rigister.v(34): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct
+Info (12128): Elaborating entity "SignExtend" for hierarchy "RISCV_CPU:RISCV_CPU|SignExtend:SignExtend"
+Warning (10230): Verilog HDL assignment warning at SignExtend.v(28): truncated value with size 40 to match size of target (32)
+Info (12128): Elaborating entity "ID_EX" for hierarchy "RISCV_CPU:RISCV_CPU|ID_EX:ID_EX"
+Info (12128): Elaborating entity "hazard_detection" for hierarchy "RISCV_CPU:RISCV_CPU|hazard_detection:hazard_detection"
+Info (12128): Elaborating entity "forwarding_unit" for hierarchy "RISCV_CPU:RISCV_CPU|forwarding_unit:ForwardingUnit"
+Info (12128): Elaborating entity "forwardingMUX" for hierarchy "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1"
+Warning (10270): Verilog HDL Case Statement warning at forwardingMUX.v(13): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at forwardingMUX.v(13): inferring latch(es) for variable "data_o", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "data_o[0]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[1]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[2]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[3]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[4]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[5]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[6]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[7]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[8]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[9]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[10]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[11]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[12]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[13]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[14]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[15]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[16]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[17]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[18]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[19]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[20]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[21]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[22]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[23]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[24]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[25]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[26]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[27]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[28]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[29]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[30]" at forwardingMUX.v(13)
+Info (10041): Inferred latch for "data_o[31]" at forwardingMUX.v(13)
+Info (12128): Elaborating entity "ALU_control" for hierarchy "RISCV_CPU:RISCV_CPU|ALU_control:ALU_control"
+Warning (10270): Verilog HDL Case Statement warning at ALU_control.v(25): incomplete case statement has no default case item
+Warning (10270): Verilog HDL Case Statement warning at ALU_control.v(37): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at ALU_control.v(15): inferring latch(es) for variable "ALU_Ctrl_o", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "ALU_Ctrl_o[0]" at ALU_control.v(15)
+Info (10041): Inferred latch for "ALU_Ctrl_o[1]" at ALU_control.v(15)
+Info (10041): Inferred latch for "ALU_Ctrl_o[2]" at ALU_control.v(15)
+Info (10041): Inferred latch for "ALU_Ctrl_o[3]" at ALU_control.v(15)
+Info (12128): Elaborating entity "ALU" for hierarchy "RISCV_CPU:RISCV_CPU|ALU:ALU"
+Warning (10230): Verilog HDL assignment warning at ALU.v(17): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "MALU" for hierarchy "RISCV_CPU:RISCV_CPU|MALU:MALU"
+Warning (10270): Verilog HDL Case Statement warning at MALU.v(29): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at MALU.v(29): inferring latch(es) for variable "unsigned_data0", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at MALU.v(29): inferring latch(es) for variable "unsigned_data1", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at MALU.v(29): inferring latch(es) for variable "data_o", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at MALU.v(29): inferring latch(es) for variable "negative_product", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "data_o[0]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[1]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[2]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[3]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[4]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[5]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[6]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[7]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[8]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[9]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[10]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[11]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[12]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[13]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[14]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[15]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[16]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[17]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[18]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[19]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[20]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[21]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[22]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[23]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[24]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[25]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[26]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[27]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[28]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[29]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[30]" at MALU.v(29)
+Info (10041): Inferred latch for "data_o[31]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[0]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[1]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[2]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[3]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[4]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[5]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[6]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[7]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[8]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[9]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[10]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[11]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[12]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[13]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[14]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[15]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[16]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[17]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[18]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[19]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[20]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[21]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[22]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[23]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[24]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[25]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[26]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[27]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[28]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[29]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[30]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data1[31]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[0]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[1]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[2]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[3]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[4]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[5]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[6]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[7]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[8]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[9]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[10]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[11]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[12]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[13]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[14]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[15]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[16]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[17]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[18]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[19]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[20]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[21]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[22]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[23]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[24]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[25]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[26]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[27]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[28]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[29]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[30]" at MALU.v(29)
+Info (10041): Inferred latch for "unsigned_data0[31]" at MALU.v(29)
+Info (12128): Elaborating entity "DALU" for hierarchy "RISCV_CPU:RISCV_CPU|DALU:DALU"
+Warning (10230): Verilog HDL assignment warning at DALU.v(124): truncated value with size 32 to match size of target (6)
+Info (12128): Elaborating entity "csr_control" for hierarchy "RISCV_CPU:RISCV_CPU|csr_control:csr_control"
+Info (12128): Elaborating entity "csr" for hierarchy "RISCV_CPU:RISCV_CPU|csr:csr"
+Info (12128): Elaborating entity "clint" for hierarchy "RISCV_CPU:RISCV_CPU|clint:clint"
+Info (10264): Verilog HDL Case Statement information at clint.v(195): all case item expressions in this case statement are onehot
+Info (10264): Verilog HDL Case Statement information at clint.v(245): all case item expressions in this case statement are onehot
+Info (12128): Elaborating entity "EX_MEM" for hierarchy "RISCV_CPU:RISCV_CPU|EX_MEM:EX_MEM"
+Info (12128): Elaborating entity "branch_control" for hierarchy "RISCV_CPU:RISCV_CPU|branch_control:branch_control"
+Warning (10230): Verilog HDL assignment warning at branch_control.v(15): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at branch_control.v(19): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at branch_control.v(23): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at branch_control.v(27): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at branch_control.v(31): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at branch_control.v(35): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "data_memory" for hierarchy "RISCV_CPU:RISCV_CPU|data_memory:data_memory"
+Warning (10036): Verilog HDL or VHDL warning at data_memory.v(34): object "data_out_0" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at data_memory.v(35): object "data_out_1" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at data_memory.v(36): object "data_out_2" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at data_memory.v(37): object "data_out_3" assigned a value but never read
+Warning (10240): Verilog HDL Always Construct warning at data_memory.v(87): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct
+Info (12128): Elaborating entity "MEM_WB" for hierarchy "RISCV_CPU:RISCV_CPU|MEM_WB:MEM_WB"
+Info (12128): Elaborating entity "bus" for hierarchy "bus:bus"
+Info (10264): Verilog HDL Case Statement information at bus.v(54): all case item expressions in this case statement are onehot
+Info (10264): Verilog HDL Case Statement information at bus.v(85): all case item expressions in this case statement are onehot
+Info (10264): Verilog HDL Case Statement information at bus.v(108): all case item expressions in this case statement are onehot
+Info (12128): Elaborating entity "uart" for hierarchy "uart:uart"
+Warning (10230): Verilog HDL assignment warning at uart.v(143): truncated value with size 32 to match size of target (13)
+Warning (10230): Verilog HDL assignment warning at uart.v(186): truncated value with size 32 to match size of target (5)
+Warning (10230): Verilog HDL assignment warning at uart.v(246): truncated value with size 32 to match size of target (13)
+Info (12128): Elaborating entity "gpio" for hierarchy "gpio:gpio"
+Info (12128): Elaborating entity "timer" for hierarchy "timer:timer"
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RISCV_CPU:RISCV_CPU|address" is missing source, defaulting to GND
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[31]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[30]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[29]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[28]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[27]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[26]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[25]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[24]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[23]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[22]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[21]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[20]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[19]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[18]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[17]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[16]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[15]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[14]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[13]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[12]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[11]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[10]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[9]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[8]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[7]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[6]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[5]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[4]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[3]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[2]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[1]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData2|data_o[0]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[31]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[30]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[29]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[28]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[27]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[26]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[25]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[24]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[23]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[22]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[21]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[20]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[19]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[18]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[17]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[16]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[15]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[14]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[13]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[12]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[11]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[10]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[9]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[8]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[7]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[6]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[5]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[4]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[3]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[2]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[1]" is permanently enabled
+Warning (14026): LATCH primitive "RISCV_CPU:RISCV_CPU|forwardingMUX:ForwardToData1|data_o[0]" is permanently enabled
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "RISCV_CPU:RISCV_CPU|MALU:MALU|Mult0"
+Info (12130): Elaborated megafunction instantiation "RISCV_CPU:RISCV_CPU|MALU:MALU|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "RISCV_CPU:RISCV_CPU|MALU:MALU|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "32"
+    Info (12134): Parameter "LPM_WIDTHB" = "32"
+    Info (12134): Parameter "LPM_WIDTHP" = "64"
+    Info (12134): Parameter "LPM_WIDTHR" = "64"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_7dt.tdf
+    Info (12023): Found entity 1: mult_7dt
+Warning (12241): 5 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13014): Ignored 222 buffer(s)
+    Info (13019): Ignored 222 SOFT buffer(s)
+Warning (13012): Latch RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[2]
+Warning (13012): Latch RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[2]
+Warning (13012): Latch RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[2]
+Warning (13012): Latch RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[2]
+Warning (13012): Latch RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control|pc_type[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]
+Warning (13012): Latch RISCV_CPU:RISCV_CPU|pcIm_control:pcIm_control|pc_type[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 226 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/user/side project/RISV-V CPU/quartus_prj/output_files/RISCV_CPU.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "uart_rx"
+Info (21057): Implemented 11508 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 5 output pins
+    Info (21061): Implemented 11492 logic cells
+    Info (21062): Implemented 8 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 118 warnings
+    Info: Peak virtual memory: 4687 megabytes
+    Info: Processing ended: Tue Jul 30 15:50:49 2024
+    Info: Elapsed time: 00:00:35
+    Info: Total CPU time (on all processors): 00:00:33
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/user/side project/RISV-V CPU/quartus_prj/output_files/RISCV_CPU.map.smsg.
+
+

@@ -1,0 +1,12 @@
+Warning (10268): Verilog HDL information at timer.v(89): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at timer.v(17): object "TIMER_CTRL" differs only in case from object "timer_ctrl" in the same scope
+Info (10281): Verilog HDL Declaration information at timer.v(17): object "TIMER_COUNT" differs only in case from object "timer_count" in the same scope
+Info (10281): Verilog HDL Declaration information at timer.v(17): object "TIMER_EVALUE" differs only in case from object "timer_evalue" in the same scope
+Info (10281): Verilog HDL Declaration information at clint.v(24): object "csr_mstatus" differs only in case from object "CSR_MSTATUS" in the same scope
+Info (10281): Verilog HDL Declaration information at clint.v(23): object "csr_mepc" differs only in case from object "CSR_MEPC" in the same scope
+Info (10281): Verilog HDL Declaration information at uart.v(19): object "UART_CTRL" differs only in case from object "uart_ctrl" in the same scope
+Info (10281): Verilog HDL Declaration information at uart.v(19): object "UART_TX_DATA_BUF" differs only in case from object "uart_tx_data_buf" in the same scope
+Info (10281): Verilog HDL Declaration information at uart.v(19): object "UART_RX_DATA_BUF" differs only in case from object "uart_rx_data_buf" in the same scope
+Info (10281): Verilog HDL Declaration information at gpio.v(17): object "GPIO_CTRL" differs only in case from object "gpio_ctrl" in the same scope
+Info (10281): Verilog HDL Declaration information at gpio.v(17): object "GPIO_DATA" differs only in case from object "gpio_data" in the same scope
+Warning (10268): Verilog HDL information at DALU.v(26): always construct contains both blocking and non-blocking assignments

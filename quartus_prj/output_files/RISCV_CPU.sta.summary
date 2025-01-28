@@ -1,0 +1,173 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'sys_clk'
+Slack : -19.733
+TNS   : -20977.647
+
+Type  : Slow 1200mV 85C Model Setup 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : -16.173
+TNS   : -980.630
+
+Type  : Slow 1200mV 85C Model Setup 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : -6.016
+TNS   : -19.608
+
+Type  : Slow 1200mV 85C Model Setup 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : -1.149
+TNS   : -2.267
+
+Type  : Slow 1200mV 85C Model Hold 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : -3.750
+TNS   : -9.444
+
+Type  : Slow 1200mV 85C Model Hold 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : -3.614
+TNS   : -7.226
+
+Type  : Slow 1200mV 85C Model Hold 'sys_clk'
+Slack : 0.431
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : 0.666
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'sys_clk'
+Slack : -2.110
+TNS   : -789.771
+
+Type  : Slow 1200mV 85C Model Removal 'sys_clk'
+Slack : 1.977
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'sys_clk'
+Slack : -3.000
+TNS   : -3365.107
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : 0.223
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : 0.274
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : 0.289
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'sys_clk'
+Slack : -18.596
+TNS   : -19702.874
+
+Type  : Slow 1200mV 0C Model Setup 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : -14.709
+TNS   : -900.758
+
+Type  : Slow 1200mV 0C Model Setup 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : -5.686
+TNS   : -18.707
+
+Type  : Slow 1200mV 0C Model Setup 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : -1.217
+TNS   : -2.402
+
+Type  : Slow 1200mV 0C Model Hold 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : -3.371
+TNS   : -8.548
+
+Type  : Slow 1200mV 0C Model Hold 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : -3.226
+TNS   : -6.450
+
+Type  : Slow 1200mV 0C Model Hold 'sys_clk'
+Slack : 0.381
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : 0.464
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'sys_clk'
+Slack : -1.803
+TNS   : -660.944
+
+Type  : Slow 1200mV 0C Model Removal 'sys_clk'
+Slack : 1.771
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'sys_clk'
+Slack : -3.000
+TNS   : -3365.107
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : 0.039
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : 0.046
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : 0.073
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'sys_clk'
+Slack : -8.012
+TNS   : -7952.350
+
+Type  : Fast 1200mV 0C Model Setup 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : -6.567
+TNS   : -388.481
+
+Type  : Fast 1200mV 0C Model Setup 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : -2.437
+TNS   : -7.289
+
+Type  : Fast 1200mV 0C Model Setup 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : -0.150
+TNS   : -0.284
+
+Type  : Fast 1200mV 0C Model Hold 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : -1.790
+TNS   : -4.392
+
+Type  : Fast 1200mV 0C Model Hold 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : -1.731
+TNS   : -3.458
+
+Type  : Fast 1200mV 0C Model Hold 'sys_clk'
+Slack : 0.132
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : 0.328
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'sys_clk'
+Slack : -0.447
+TNS   : -135.558
+
+Type  : Fast 1200mV 0C Model Removal 'sys_clk'
+Slack : 0.907
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'sys_clk'
+Slack : -3.000
+TNS   : -2462.333
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|ALU_control:ALU_control|ALU_Ctrl_o[2]'
+Slack : 0.290
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|IF_ID:IF_ID|instr_o[0]'
+Slack : 0.319
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RISCV_CPU:RISCV_CPU|ID_EX:ID_EX|ALUop_o[0]'
+Slack : 0.335
+TNS   : 0.000
+
+------------------------------------------------------------

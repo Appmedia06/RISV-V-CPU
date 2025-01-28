@@ -1,0 +1,16 @@
+Fitter Status : Failed - Tue Jul 30 15:51:03 2024
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
+Revision Name : RISCV_CPU
+Top-level Entity Name : RISC_V_SOC_TOP
+Family : Cyclone IV E
+Device : EP4CE10F17C8
+Timing Models : Final
+Total logic elements : 10,300 / 10,320 ( 100 % )
+    Total combinational functions : 10,260 / 10,320 ( 99 % )
+    Dedicated logic registers : 2,773 / 10,320 ( 27 % )
+Total registers : 2773
+Total pins : 8 / 180 ( 4 % )
+Total virtual pins : 0
+Total memory bits : 0 / 423,936 ( 0 % )
+Embedded Multiplier 9-bit elements : 8 / 46 ( 17 % )
+Total PLLs : 0 / 2 ( 0 % )

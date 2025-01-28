@@ -1,0 +1,33 @@
+lui x17 1
+auipc x2 0
+addi x5, x0, 1
+addi x6, x0, -1
+addi x7, x0, 3
+addi x8, x0, 0
+beq x8, x7, 12
+add x8, x8, x5
+jal x1, -8
+bne x5, x6, 12
+addi x9, x0, 1
+jal x1, 8
+addi x9, x0, 2
+bge x5, x6, 12
+addi x10, x0, 1
+jal x1, 8
+addi x10, x0, 2
+blt x5, x6, 12
+addi x11, x0, 1
+jal x1, 8
+addi x11, x0, 2
+bgeu x5, x6, 12
+addi x12, x0, 1
+jal x1, 8
+addi x12, x0, 2
+bltu x5, x6, 12
+addi x13, x0, 1
+jal x1, 8
+addi x13, x0, 2
+addi x14, x0, 120
+jalr x15, x14, 8
+addi x16, x0, 1
+addi x16, x16, 2
